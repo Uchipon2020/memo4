@@ -2,22 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 class AddEditMemoPage extends StatelessWidget {
-   AddEditMemoPage ({Key? key}) : super(key: key);
+  AddEditMemoPage({Key? key}) : super(key: key);
 
   TextEditingController titleController = TextEditingController();
   TextEditingController detailController = TextEditingController();
 
   Future<void> save() async {
-    final memoCollection = await FirebaseFirestore.instance.collection('memoTest');
+    final memoCollection =
+        await FirebaseFirestore.instance.collection('memoTest');
     memoCollection.add({
       'title': titleController.text,
       'detail': detailController.text,
       'createtime': Timestamp.now(),
-    }
-    );
+    });
   }
 
   @override
@@ -55,7 +53,7 @@ class AddEditMemoPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                 ),
-                child:  TextField(
+                child: TextField(
                   controller: detailController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -64,11 +62,11 @@ class AddEditMemoPage extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton  (
-                onPressed: ()  async {
-                await save();
-              Navigator.pop(context);
-            },
+            ElevatedButton(
+                onPressed: () async {
+                  await save();
+                  Navigator.pop(context);
+                },
                 child: const Text('保存')),
           ],
         ),

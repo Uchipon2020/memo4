@@ -13,9 +13,9 @@ class TopPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<TopPage> {
-  List<Memo> memoList = [];
+  //List<Memo> memoList = [];
 
- /* Future<void> fetchMemo() async {
+  /* Future<void> fetchMemo() async {
     final memoCollection =
         await FirebaseFirestore.instance.collection('memoTest').get();
     final docs = memoCollection.docs;
@@ -32,11 +32,6 @@ class _MyHomePageState extends State<TopPage> {
     setState(() {});
   }*/
 
-  @override
-  void initState() {
-    super.initState();
-    fetchMemo();
-  }
   final memoCollection = FirebaseFirestore.instance.collection('memoTest');
   @override
   Widget build(BuildContext context) {
@@ -44,36 +39,50 @@ class _MyHomePageState extends State<TopPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: StreamBuilder<Memo>(
-
-        stream: memoCollection =FirebaseFirestore.instance.collection('memoTest');
-        builder: (context, snapshot) {
-          return ListView.builder(
-            itemCount: memoList.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(memoList[index].title),
-                onTap: () {
-                  // Navigator.pushNamed(context, MemoDetailPage.id);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MemoDetailPage(memoList[index]),
-                    ),
-                  );
-                },
+      body: StreamBuilder<QuerySnapshot>(
+          stream: memoCollection.snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            if (!snapshot.hasData) {
+              return const Center(
+                child: Text('データがありません'),
               );
-            },
-          );
-        }
-      ),
+            }
+
+            final docs = snapshot.data!.docs;
+
+            ListView.builder(
+              itemCount: docs.length,
+              itemBuilder: (context, index) {
+                Map<String, dynamic> data =
+                    docs[index].data() as Map<String, dynamic>;
+                final Memo fetchMemo = Memo(
+                  title: data['title'],
+                  detail: data['detail'],
+                  createdated: data['createdated'],
+                );
+                return ListTile(
+                  title: Text(fetchMemo.title),
+                  onTap: () {
+                    // Navigator.pushNamed(context, MemoDetailPage.id);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MemoDetailPage(fetchMemo)));
+                  },
+                );
+              }
+            );
+          }
+          ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>  AddEditMemoPage(),
-
+              builder: (context) => AddEditMemoPage(),
             ),
           );
         },
