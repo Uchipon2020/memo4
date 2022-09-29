@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 import 'package:memo/screens/add_edit_memo_screen.dart';
+import 'package:memo/screens/memo_detail_screen.dart';
 
 class ListScreen extends StatefulWidget {
   static String id = 'list_screen';
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<ListScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddEditMemoScreen()),
+                              builder: (context) => MemoDetailPage(fetchMemo)),
                         );
                       },
                     ),

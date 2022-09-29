@@ -44,7 +44,7 @@ class AddEditMemoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentMemo == null ? '修正' : '新規登録'),
+        title: Text(currentMemo == null ? '新規作成' : '編集'),
       ),
       body: Center(
         child: Column(
