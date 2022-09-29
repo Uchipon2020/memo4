@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 
 class MemoDetailPage extends StatelessWidget {
-  static const id = 'memo_detail_page';
-  final Memo memo;
-  const MemoDetailPage(this.memo, {Key? key}) : super(key: key);
+  static String id = 'memo_detail_screen';
+  final Memos _memo;
+  const MemoDetailPage(this._memo, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(memo.title),
+        title: Text(_memo.title),
       ),
       body: Center(
 
@@ -18,7 +18,7 @@ class MemoDetailPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('詳細'),
-            Text(memo.detail),
+            Text(_memo.title),
           ],
         ),
       ),

@@ -1,28 +1,50 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memo/models/memo.dart';
 
-class AddEditMemoPage extends StatelessWidget {
-  AddEditMemoPage({Key? key}) : super(key: key);
+class AddEditMemoScreen extends StatelessWidget {
+  final Memos? currentMemo;
+  AddEditMemoScreen({Key? key, this.currentMemo}) : super(key: key);
 
   TextEditingController titleController = TextEditingController();
-  TextEditingController detailController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
 
   Future<void> save() async {
-    final memoCollection =
-        await FirebaseFirestore.instance.collection('memoTest');
+    final memoCollection = FirebaseFirestore.instance.collection('memoTest');
     memoCollection.add({
       'title': titleController.text,
-      'detail': detailController.text,
-      'createtime': Timestamp.now(),
+      'height': heightController.text,
+      'weight': weightController.text,
+      'createdTime': Timestamp.now(),
     });
+  }
+
+  Future<void> upData() async {
+    final doc =
+        FirebaseFirestore.instance.collection('memoTest').doc(currentMemo!.id);
+    await doc.update({
+      'title': titleController.text,
+      'height': heightController.text,
+      'weight': weightController.text,
+      'createdTime': Timestamp.now(),
+    });
+  }
+
+  void initState() {
+    if (currentMemo != null) {
+      titleController.text = currentMemo!.title;
+      titleController.text = currentMemo!.height;
+      titleController.text = currentMemo!.weight;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('入力画面'),
+        title: Text(currentMemo == null ? '修正' : '新規登録'),
       ),
       body: Center(
         child: Column(
@@ -46,7 +68,7 @@ class AddEditMemoPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text('詳細入力'),
+            const Text('身長入力'),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -54,7 +76,24 @@ class AddEditMemoPage extends StatelessWidget {
                   border: Border.all(color: Colors.grey),
                 ),
                 child: TextField(
-                  controller: detailController,
+                  controller: heightController,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 10),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text('体重'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                ),
+                child: TextField(
+                  controller: weightController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 10),
@@ -64,8 +103,8 @@ class AddEditMemoPage extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () async {
-                  await save();
                   Navigator.pop(context);
+                  await save();
                 },
                 child: const Text('保存')),
           ],
