@@ -50,8 +50,12 @@ class _MyHomePageState extends State<ListScreen> {
                   title: data['title'],
                   height : data['height'],
                   weight: data['weight'],
-                  createdated: data['createdated'],
-                  upDated: data['updatedDate']);
+                  createdTime: data['createdTime'],
+                upDated: data['updatedDate']
+              );
+
+              final d = fetchMemo.createdTime.toDate();
+
 
               //card area
               return Card(
@@ -60,7 +64,8 @@ class _MyHomePageState extends State<ListScreen> {
                   children: [
                     ListTile(
                       title: Text(fetchMemo.title),
-                      subtitle: Text(fetchMemo.upDated.toString()),
+                      subtitle:
+                      Text(d.toString()),
                       trailing: IconButton(
                         onPressed: () {
                           showModalBottomSheet(

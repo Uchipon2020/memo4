@@ -5,7 +5,7 @@ class Memos {
   final String title;
   final String height;
   final String weight;
-  Timestamp? createdated;
+  Timestamp createdTime;
   Timestamp? upDated;
 
   Memos(
@@ -13,6 +13,6 @@ class Memos {
       required this.title,
       required this.height,
       required this.weight,
-      required this.createdated,
+      required this.createdTime,
       this.upDated});
 }
