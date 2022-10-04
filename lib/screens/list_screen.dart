@@ -48,14 +48,28 @@ class _MyHomePageState extends State<ListScreen> {
               final Memos fetchMemo = Memos(
                   id: docs[index].id,
                   title: data['title'],
-                  height : data['height'],
+                  height: data['height'],
                   weight: data['weight'],
+                 stateOfNutrition: data['stateOfNutrition'],
+                  spinalColumnNote: data['spinalColumnNote'],
+                  rightEye: data['rightEye'],
+                  leftEye: data['leftEye'],
+                  rightCorrectedEye: data['rightCorrectedEye'],
+                  leftCorrectedEye: data['leftCorrectedEye'],
+                  eyeDisease: data['eyeDisease'],
+                  earDisease: data['earDisease'],
+                  tuberculosis: data['tuberculosis'],
+                  tuberculosisDay: data['tuberculosisDay'],
+                  ecg: data['ecg'],
+                  urineNote: data['urineNote'],
+                  others: data['others'],
                   createdTime: data['createdTime'],
-                upDated: data['updatedDate']
-              );
+                  upDated: data['updatedDate']);
 
               final d = fetchMemo.createdTime.toDate();
-
+              String year = d.year.toString();
+              String month = d.month.toString();
+              String day = d.day.toString();
 
               //card area
               return Card(
@@ -64,8 +78,7 @@ class _MyHomePageState extends State<ListScreen> {
                   children: [
                     ListTile(
                       title: Text(fetchMemo.title),
-                      subtitle:
-                      Text(d.toString()),
+                      subtitle: Text('最終更新日$year年$month月$day日'),
                       trailing: IconButton(
                         onPressed: () {
                           showModalBottomSheet(
@@ -77,11 +90,16 @@ class _MyHomePageState extends State<ListScreen> {
                                   children: [
                                     ListTile(
                                       onTap: () {
-                                        Navigator.pop(context);
+                                       /* Navigator.pop(context);
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => AddEditMemoScreen(currentMemo:fetchMemo,),),);
+                                            builder: (context) =>
+                                                AddEditMemoScreen(
+                                              currentMemo: fetchMemo,
+                                            ),
+                                          ),
+                                        );*/
                                       },
                                       leading: const Icon(Icons.edit),
                                       title: const Text('修正'),
@@ -120,7 +138,8 @@ class _MyHomePageState extends State<ListScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-            context, MaterialPageRoute(
+            context,
+            MaterialPageRoute(
               builder: (context) => AddEditMemoScreen(),
             ),
           );
