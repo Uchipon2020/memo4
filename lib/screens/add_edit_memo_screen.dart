@@ -24,6 +24,7 @@ class AddEditMemoScreen extends StatelessWidget {
   TextEditingController ecgController = TextEditingController();
   TextEditingController urineNoteController = TextEditingController();
   TextEditingController othersController = TextEditingController();
+  TextEditingController other2Controller = TextEditingController();
 
   Future<void> save() async {
     final memoCollection = FirebaseFirestore.instance.collection('memoTest');
@@ -42,6 +43,7 @@ class AddEditMemoScreen extends StatelessWidget {
       'ecg': ecgController.text,
       'urineNote': urineNoteController.text,
       'other': othersController.text,
+      'other2': other2Controller.text,
       'createdTime': Timestamp.now(),
     });
   }
@@ -273,7 +275,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: heightController,
+                    controller: other2Controller,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),

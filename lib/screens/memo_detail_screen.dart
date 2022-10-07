@@ -12,46 +12,38 @@ class MemoDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(_memo.title),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+      body: Padding(
+        padding: const EdgeInsets.only(top:15.0, left:10.0, right: 10.0),
+          child: ListView(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.accessibility),
+                    title: Text(
+                      '身長   ${_memo.height}  cm',
+                     /* textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                      ),*/
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.edit),
+                    title: Text(
+                      '体重   ${_memo.weight}  kg',
+                    /*  textAlign: TextAlign.right,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                      ),*/
+                    ),
+                  ),
+
+
+
               ListTile(
                 leading: const Icon(Icons.accessibility),
                 title: Text(
-                  '身長   ${_memo.height} cm',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: Text(
-                  '体重 ${_memo.weight} kg',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.accessibility),
-                title: Text(
-                  '栄養状態 ${_memo.stateOfNutrition} ',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.accessibility),
-                title: Text(
-                  '脊柱の病気 ${_memo.spinalColumnNote}',
-                  textAlign: TextAlign.center,
+                  '栄養状態  ${_memo.stateOfNutrition} ',
+                  textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontSize: 20.0,
                   ),
@@ -60,44 +52,62 @@ class MemoDetailPage extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.accessibility),
                 title: Text(
-                  '右目（裸眼） ${_memo.rightEye}',
-                  textAlign: TextAlign.center,
+                  '脊柱の病気   ${_memo.spinalColumnNote}',
+                  textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),
               ),
-              ListTile(
-                leading: const Icon(Icons.accessibility),
-                title: Text(
-                  '左目（裸眼） ${_memo.leftEye}',
-                  /*textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                        ),*/
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.accessibility),
-                title: Text(
-                  '右目矯正 ${_memo.rightCorrectedEye}',
-                  /*textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                        ),
+
+
+
+                    ListTile(
+                      leading: const Icon(Icons.accessibility),
+                      title: Text(
+                        '右目（裸眼）   ${_memo.rightEye}',
+                      //  textAlign: TextAlign.center,
+                        //style: const TextStyle(
+                          //fontSize: 20.0,
+                        //),
+                      ),
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.accessibility),
+                      title: Text(
+                        '左目（裸眼） ${_memo.leftEye}',
+                        /*textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                          ),*/
+                      ),
+                    ),
+
+
+                  ListTile(
+                    leading: const Icon(Icons.accessibility),
+                    title: Text(
+                      '右目矯正 ${_memo.rightCorrectedEye}',
+                      /*textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                            ),
 */
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.accessibility),
-                title: Text(
-                  '左目矯正 ${_memo.leftCorrectedEye}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20.0,
+                    ),
                   ),
-                ),
-              ),
+                  ListTile(
+                    leading: const Icon(Icons.accessibility),
+                    title: Text(
+                      '左目矯正 ${_memo.leftCorrectedEye}',
+                      //textAlign: TextAlign.center,
+                      //style: const TextStyle(
+                       // fontSize: 20.0,
+                    //  ),
+                    ),
+                  ),
+
+
+
               ListTile(
                 leading: const Icon(Icons.accessibility),
                 title: Text(
@@ -139,7 +149,7 @@ class MemoDetailPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 }
