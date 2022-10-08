@@ -46,7 +46,7 @@ class MemoDetailPage extends StatelessWidget {
         title: Text(_memo.title),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 15.0, left: 15.0, right: 8.0),
+        padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
         child: ListView(
           children: [
             /*-身長体重----------------*/
@@ -54,137 +54,169 @@ class MemoDetailPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Padding(
-                    padding : const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       controller: heightController,
                       textAlign: TextAlign.right,
+                      enabled: false,
                       decoration: const InputDecoration(
                         labelText: '身長',
                         suffix: Text('cm'),
                         filled: true,
+                        fillColor: Colors.white,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 5),
+
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       controller: weightController,
+                      enabled: false,
                       textAlign: TextAlign.right,
                       decoration: const InputDecoration(
                         labelText: '体重',
                         suffix: Text('kg'),
                         filled: true,
+                        fillColor: Colors.white,
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
-            ListTile(
-              title: TextField(
-                controller: stateOfNutritionController,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '栄養状態',
-                  filled: true,
+            //const SizedBox(height: 10),
+            Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: stateOfNutritionController,
+                    enabled: false,
+                    textAlign: TextAlign.right,
+                    decoration: const InputDecoration(
+                      labelText: '栄養状態',
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            ListTile(
-              title: TextField(
-                controller: stateOfNutritionController,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '脊柱の病気',
-                  filled: true,
-                  fillColor: Colors.white,
+
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: stateOfNutritionController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '脊柱の病気',
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 10),
 
             /*-視力関連----------------*/
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: rightEyeController,
-                      textAlign: TextAlign.right,
-                      decoration: const InputDecoration(
-                        labelText: '右目（裸眼）',
-                        filled: true,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0 , color: Colors.grey),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TextField(
+                            controller: rightEyeController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '右目（裸眼）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TextField(
+                            controller: leftEyeController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '左（裸眼）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: rightCorrectedEyeController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '右目（矯正）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: leftCorrectedEyeController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '左目（矯正）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ListTile(
+                      title: TextField(
+                        controller: eyeDiseaseController,
+                        enabled: false,
+                        textAlign: TextAlign.right,
+                        decoration: const InputDecoration(
+                          labelText: '目の病気',
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 5),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: leftEyeController,
-                      textAlign: TextAlign.right,
-                      decoration: const InputDecoration(
-                        labelText: '左（裸眼）',
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: rightCorrectedEyeController,
-                      textAlign: TextAlign.right,
-                      decoration: const InputDecoration(
-                        labelText: '右目（矯正）',
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 5.0),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: leftCorrectedEyeController,
-                      textAlign: TextAlign.right,
-                      decoration: const InputDecoration(
-                        labelText: '左目（矯正）',
-                        filled: true,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            ListTile(
-              title: TextField(
-                controller: eyeDiseaseController,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '目の病気',
-                  filled: true,
-                ),
+                ],
               ),
             ),
-
+            const SizedBox(height: 10.0),
             ListTile(
               title: TextField(
                 controller: earDiseaseController,
+                enabled: false,
                 textAlign: TextAlign.right,
                 decoration: const InputDecoration(
                   labelText: '耳の病気',
@@ -192,10 +224,10 @@ class MemoDetailPage extends StatelessWidget {
                 ),
               ),
             ),
-
             ListTile(
               title: TextField(
                 controller: ecgController,
+                enabled: false,
                 textAlign: TextAlign.right,
                 decoration: const InputDecoration(
                   labelText: '心臓の病気',
@@ -206,6 +238,7 @@ class MemoDetailPage extends StatelessWidget {
             ListTile(
               title: TextField(
                 controller: urineNoteController,
+                enabled: false,
                 textAlign: TextAlign.right,
                 decoration: const InputDecoration(
                   labelText: '尿検査所見',
@@ -213,10 +246,10 @@ class MemoDetailPage extends StatelessWidget {
                 ),
               ),
             ),
-
             ListTile(
               title: TextField(
                 controller: othersController,
+                enabled: false,
                 textAlign: TextAlign.right,
                 decoration: const InputDecoration(
                   labelText: 'その他',
