@@ -124,7 +124,7 @@ class MemoDetailPage extends StatelessWidget {
             /*-視力関連----------------*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0 , color: Colors.grey),
+                border: Border.all(width: 1.0),
               ),
               child: Column(
                 children: [
@@ -197,18 +197,21 @@ class MemoDetailPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ListTile(
-                      title: TextField(
-                        controller: eyeDiseaseController,
-                        enabled: false,
-                        textAlign: TextAlign.right,
-                        decoration: const InputDecoration(
-                          labelText: '目の病気',
-                          filled: true,
-                          fillColor: Colors.white,
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                            controller: eyeDiseaseController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '目の病気',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+
+
                 ],
               ),
             ),
