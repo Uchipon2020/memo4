@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 
@@ -14,17 +13,12 @@ class MemoDetailPage extends StatelessWidget {
         title: Text(_memo.title),
       ),
       body: Center(
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: Text('身長 ${_memo.height} cm'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: Text('体重 ${_memo.weight} kg'),
-            ),
+            const Text('詳細'),
+            Text(_memo.title),
           ],
         ),
       ),
