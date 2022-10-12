@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.orange,
-        scaffoldBackgroundColor: Colors.white70,
+        //scaffoldBackgroundColor: Colors.amberAccent
       ),
       home: const LoginScreen(),
       //initialRoute: ListScreen.id,

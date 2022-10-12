@@ -12,11 +12,14 @@ class Memos {
   final String? rightCorrectedEye; //矯正視力右
   final String? leftCorrectedEye; //矯正視力左
   final String? eyeDisease; //目の疾病
-  final String? earDisease; //耳の疾病の有無
+  final String? earDisease; //耳の疾病
+  final String? skinDisease; //皮膚の病気
+  final String? tuberculosisDisease;
   final String? ecg; //心臓の所見の有無
   final String? urineNote; //尿所見の内容
   final String? others; //その他
   final String? other2;
+
 /* bool -----------------------------------*/
   final bool? rightEar1000; //聴力　右1000
   final bool? leftEar1000; //聴力　左1000
@@ -48,6 +51,8 @@ class Memos {
         this.rightEar4000,
         this.leftEar4000,
         this.earDisease,
+        this.skinDisease,
+        this.tuberculosisDisease,
         this.tuberculosis,
         this.tuberculosisDay,
         this.ecg,

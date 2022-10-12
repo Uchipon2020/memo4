@@ -14,6 +14,10 @@ class MemoDetailPage extends StatelessWidget {
   TextEditingController rightCorrectedEyeController = TextEditingController();
   TextEditingController leftCorrectedEyeController = TextEditingController();
   TextEditingController eyeDiseaseController = TextEditingController();
+  TextEditingController right1000EarController = TextEditingController();
+  TextEditingController right4000EarController = TextEditingController();
+  TextEditingController left1000EarController = TextEditingController();
+  TextEditingController left4000EarController = TextEditingController();
   TextEditingController earDiseaseController = TextEditingController();
   TextEditingController tuberculosisController = TextEditingController();
   TextEditingController tuberculosisDayController = TextEditingController();
@@ -40,6 +44,19 @@ class MemoDetailPage extends StatelessWidget {
     urineNoteController.text = _memo.urineNote.toString();
     othersController.text = _memo.others.toString();
     other2Controller.text = _memo.other2.toString();
+
+    _memo.rightEar1000 == true
+        ? right1000EarController.text = '所見あり'
+        : right1000EarController.text = '異常なし';
+    _memo.rightEar4000 == true
+        ? right4000EarController.text = '所見あり'
+        : right4000EarController.text = '異常なし';
+    _memo.leftEar1000 == true
+        ? left1000EarController.text = '所見あり'
+        : left1000EarController.text = '異常なし';
+    _memo.leftEar4000 == true
+        ? left4000EarController.text = '所見あり'
+        : left4000EarController.text = '異常なし';
 
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +85,6 @@ class MemoDetailPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -89,21 +105,22 @@ class MemoDetailPage extends StatelessWidget {
             ),
             //const SizedBox(height: 10),
             Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: stateOfNutritionController,
-                    enabled: false,
-                    textAlign: TextAlign.right,
-                    decoration: const InputDecoration(
-                      labelText: '栄養状態',
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: stateOfNutritionController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '栄養状態',
+                    filled: true,
+                    fillColor: Colors.white,
                   ),
                 ),
               ),
+            ),
 
+            /* 脊柱胸郭四肢  */
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -112,7 +129,7 @@ class MemoDetailPage extends StatelessWidget {
                   enabled: false,
                   textAlign: TextAlign.right,
                   decoration: const InputDecoration(
-                    labelText: '脊柱の病気',
+                    labelText: '脊柱・胸郭・四肢',
                     filled: true,
                     fillColor: Colors.white,
                   ),
@@ -147,13 +164,13 @@ class MemoDetailPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextField(
-                            controller: leftEyeController,
+                            controller: leftCorrectedEyeController,
                             enabled: false,
                             textAlign: TextAlign.right,
                             decoration: const InputDecoration(
-                              labelText: '左（裸眼）',
+                              labelText: '左目（矯正）',
                               filled: true,
                               fillColor: Colors.white,
                             ),
@@ -179,16 +196,15 @@ class MemoDetailPage extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: TextField(
-                            controller: leftCorrectedEyeController,
+                            controller: leftEyeController,
                             enabled: false,
                             textAlign: TextAlign.right,
                             decoration: const InputDecoration(
-                              labelText: '左目（矯正）',
+                              labelText: '左（裸眼）',
                               filled: true,
                               fillColor: Colors.white,
                             ),
@@ -198,38 +214,122 @@ class MemoDetailPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                            controller: eyeDiseaseController,
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 0.8, bottom: 10.0),
+                    child: TextField(
+                      controller: eyeDiseaseController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '目の病気',
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10.0),
+
+            /*-聴力関連---------------------------*/
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TextField(
+                            controller: right1000EarController,
                             enabled: false,
                             textAlign: TextAlign.right,
                             decoration: const InputDecoration(
-                              labelText: '目の病気',
+                              labelText: '右耳 1000Hz（低音）',
                               filled: true,
                               fillColor: Colors.white,
                             ),
                           ),
                         ),
-
-
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: TextField(
+                            controller: right4000EarController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '右耳 4000Hz（高音）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: left1000EarController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '左耳 1000Hz（低音）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: left4000EarController,
+                            enabled: false,
+                            textAlign: TextAlign.right,
+                            decoration: const InputDecoration(
+                              labelText: '左耳 4000Hz（高音）',
+                              filled: true,
+                              fillColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        right: 8.0, left: 0.8, bottom: 10.0),
+                    child: TextField(
+                      controller: earDiseaseController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '耳の病気',
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height:10.0),
+
+            /* 皮膚疾患  */
             ListTile(
               title: TextField(
-                controller: earDiseaseController,
-                enabled: false,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '耳の病気',
-                  filled: true,
-                ),
-              ),
-            ),
-            ListTile(
-              title: TextField(
-                controller: ecgController,
+                controller: ,
                 enabled: false,
                 textAlign: TextAlign.right,
                 decoration: const InputDecoration(
@@ -238,6 +338,7 @@ class MemoDetailPage extends StatelessWidget {
                 ),
               ),
             ),
+
             ListTile(
               title: TextField(
                 controller: urineNoteController,
@@ -249,6 +350,7 @@ class MemoDetailPage extends StatelessWidget {
                 ),
               ),
             ),
+
             ListTile(
               title: TextField(
                 controller: othersController,
