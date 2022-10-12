@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 import 'package:memo/screens/add_edit_memo_screen.dart';
+import 'package:memo/screens/login_screen.dart';
 import 'package:memo/screens/memo_detail_screen.dart';
 
 class ListScreen extends StatefulWidget {
@@ -26,6 +28,12 @@ class _MyHomePageState extends State<ListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () => _onSignOut(),
+            icon: const Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: memoCollection.snapshots(),
@@ -43,7 +51,7 @@ class _MyHomePageState extends State<ListScreen> {
             itemCount: docs.length,
             itemBuilder: (context, index) {
               Map<String, dynamic> data =
-              docs[index].data() as Map<String, dynamic>;
+                  docs[index].data() as Map<String, dynamic>;
 
               final Memos fetchMemo = Memos(
                   id: docs[index].id,
@@ -149,4 +157,16 @@ class _MyHomePageState extends State<ListScreen> {
       ),
     );
   }
+
+  Future<void> _onSignOut() async {
+    await FirebaseAuth.instance.signOut();
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => const LoginScreen(),
+      ),
+    );
+  }
+
+
 }

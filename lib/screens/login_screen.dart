@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/screens/list_screen.dart';
@@ -72,6 +72,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void _onLogin() {
+    if (_formKey.currentState?.validate() != true) {
+      return;
+    }
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const ListScreen(title: '受診履歴')),
+    );
+  }
+/*
   Future<void> _onLogin() async {
     try {
       if (_formKey.currentState?.validate() != true) {
@@ -81,7 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final String password = _passwordController.text;
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ListScreen(title: '受診履歴'),
@@ -97,7 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         },
       );
-
     }
-  }
+  } */
 }
