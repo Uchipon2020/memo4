@@ -12,18 +12,25 @@ class Memos {
   final String? rightCorrectedEye; //矯正視力右
   final String? leftCorrectedEye; //矯正視力左
   final String? eyeDisease; //目の疾病
-  final String? earDisease; //耳の疾病の有無
-  final String? ecg; //心臓の所見の有無
-  final String? urineNote; //尿所見の内容
+  final String? earDisease; //耳の疾病
+  final String? skinDisease; //皮膚の病気
+  final String? tuberculosisDisease;//結核の所見
+  final String? heartDisease; //心臓の所見の有無
+  final String? urinaryProtein;//尿蛋白
+  final String? urinarySugar; //尿糖
+  final String? urine; //その他の尿検査
+  final String? schoolDoctor;
   final String? others; //その他
   final String? other2;
+
 /* bool -----------------------------------*/
   final bool? rightEar1000; //聴力　右1000
   final bool? leftEar1000; //聴力　左1000
   final bool? rightEar4000; //聴力　右4000
   final bool? leftEar4000; //聴力　左4000
   final bool? tuberculosis; //結核の有無
-  final bool? urine; //尿所見の有無
+  final bool? ecg;//心電図所見の有無
+
 
   final Timestamp? tuberculosisDay; //結核の日付
   final Timestamp createdTime;
@@ -48,12 +55,17 @@ class Memos {
         this.rightEar4000,
         this.leftEar4000,
         this.earDisease,
+        this.skinDisease,
+        this.tuberculosisDisease,
         this.tuberculosis,
         this.tuberculosisDay,
+        this.heartDisease,
         this.ecg,
+        this.urinaryProtein,
+        this.urinarySugar,
         this.urine,
-        this.urineNote,
         this.others,
+        this.schoolDoctor,
         this.other2});
 }
 //　身長・体重

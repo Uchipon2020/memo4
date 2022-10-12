@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Shool No!',
+                  'ログイン画面',
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 const SizedBox(height: 16),
