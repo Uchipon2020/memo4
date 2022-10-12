@@ -69,7 +69,6 @@ class _MyHomePageState extends State<ListScreen> {
                   others: data['others'],
                   createdTime: data['createdTime'],
                   upDated: data['updatedDate']);
-
               final d = fetchMemo.createdTime.toDate();
               String year = d.year.toString();
               String month = d.month.toString();
