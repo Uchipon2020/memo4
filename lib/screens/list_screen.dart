@@ -57,18 +57,15 @@ class _MyHomePageState extends State<ListScreen> {
                   rightCorrectedEye: data['rightCorrectedEye'],
                   leftCorrectedEye: data['leftCorrectedEye'],
                   eyeDisease: data['eyeDisease'],
-                  rightEar1000: data['rightEar1000'],
-                  rightEar4000: data['rightEar4000'],
-                  leftEar1000: data['leftEar1000'],
-                  leftEar4000: data['leftEar4000'],
                   earDisease: data['earDisease'],
                   tuberculosis: data['tuberculosis'],
                   tuberculosisDay: data['tuberculosisDay'],
-                  heartDisease: data['heartDisease'],
-                  urine: data['urineNote'],
+                  ecg: data['ecg'],
+                  urineNote: data['urineNote'],
                   others: data['others'],
                   createdTime: data['createdTime'],
                   upDated: data['updatedDate']);
+
               final d = fetchMemo.createdTime.toDate();
               String year = d.year.toString();
               String month = d.month.toString();
