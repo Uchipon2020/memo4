@@ -14,8 +14,8 @@ class Memos {
   final String? eyeDisease; //目の疾病
   final String? earDisease; //耳の疾病
   final String? skinDisease; //皮膚の病気
-  final String? tuberculosisDisease;
-  final String? ecg; //心臓の所見の有無
+  final String? tuberculosisDisease;//結核の所見
+  final String? heartDisease; //心臓の所見の有無
   final String? urineNote; //尿所見の内容
   final String? others; //その他
   final String? other2;
@@ -26,6 +26,7 @@ class Memos {
   final bool? rightEar4000; //聴力　右4000
   final bool? leftEar4000; //聴力　左4000
   final bool? tuberculosis; //結核の有無
+  final bool? ecg;//心電図所見の有無
   final bool? urine; //尿所見の有無
 
   final Timestamp? tuberculosisDay; //結核の日付
@@ -55,6 +56,7 @@ class Memos {
         this.tuberculosisDisease,
         this.tuberculosis,
         this.tuberculosisDay,
+        this.heartDisease,
         this.ecg,
         this.urine,
         this.urineNote,

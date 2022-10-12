@@ -19,8 +19,10 @@ class MemoDetailPage extends StatelessWidget {
   TextEditingController left1000EarController = TextEditingController();
   TextEditingController left4000EarController = TextEditingController();
   TextEditingController earDiseaseController = TextEditingController();
+  TextEditingController skinDiseaseController = TextEditingController();
   TextEditingController tuberculosisController = TextEditingController();
   TextEditingController tuberculosisDayController = TextEditingController();
+  TextEditingController heartDiseaseController = TextEditingController();
   TextEditingController ecgController = TextEditingController();
   TextEditingController urineNoteController = TextEditingController();
   TextEditingController othersController = TextEditingController();
@@ -38,8 +40,10 @@ class MemoDetailPage extends StatelessWidget {
     leftCorrectedEyeController.text = _memo.leftCorrectedEye.toString();
     eyeDiseaseController.text = _memo.eyeDisease.toString();
     earDiseaseController.text = _memo.earDisease.toString();
+    skinDiseaseController.text = _memo.skinDisease.toString();
     tuberculosisController.text = _memo.tuberculosis.toString();
     tuberculosisDayController.text = _memo.tuberculosisDay.toString();
+    heartDiseaseController.text = _memo.heartDisease.toString();
     ecgController.text = _memo.ecg.toString();
     urineNoteController.text = _memo.urineNote.toString();
     othersController.text = _memo.others.toString();
@@ -57,6 +61,9 @@ class MemoDetailPage extends StatelessWidget {
     _memo.leftEar4000 == true
         ? left4000EarController.text = '所見あり'
         : left4000EarController.text = '異常なし';
+    _memo.ecg == true
+        ? ecgController.text = '所見あり'
+        : ecgController.text = '異常なし';
 
     return Scaffold(
       appBar: AppBar(
@@ -66,79 +73,97 @@ class MemoDetailPage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
         child: ListView(
           children: [
-            /*-身長体重----------------*/
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: heightController,
-                      textAlign: TextAlign.right,
-                      enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: '身長',
-                        suffix: Text('cm'),
-                        filled: true,
-                        fillColor: Colors.white,
+            /*------------------------------身長体重----------------*/
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: heightController,
+                        textAlign: TextAlign.right,
+                        enabled: false,
+                        decoration: const InputDecoration(
+                          labelText: '身長',
+                          suffix: Text('cm'),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      controller: weightController,
-                      enabled: false,
-                      textAlign: TextAlign.right,
-                      decoration: const InputDecoration(
-                        labelText: '体重',
-                        suffix: Text('kg'),
-                        filled: true,
-                        fillColor: Colors.white,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: weightController,
+                        enabled: false,
+                        textAlign: TextAlign.right,
+                        decoration: const InputDecoration(
+                          labelText: '体重',
+                          suffix: Text('kg'),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            //const SizedBox(height: 10),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: stateOfNutritionController,
-                  enabled: false,
-                  textAlign: TextAlign.right,
-                  decoration: const InputDecoration(
-                    labelText: '栄養状態',
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
-                ),
+                ],
               ),
             ),
+            const SizedBox(height: 10),
 
-            /* 脊柱胸郭四肢  */
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: stateOfNutritionController,
-                  enabled: false,
-                  textAlign: TextAlign.right,
-                  decoration: const InputDecoration(
-                    labelText: '脊柱・胸郭・四肢',
-                    filled: true,
-                    fillColor: Colors.white,
+            //
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: stateOfNutritionController,
+                    enabled: false,
+                    textAlign: TextAlign.right,
+                    decoration: const InputDecoration(
+                      labelText: '栄養状態',
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 10),
 
-            /*-視力関連----------------*/
+            /*----------------------------　 脊柱胸郭四肢 ---*/
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: stateOfNutritionController,
+                    enabled: false,
+                    textAlign: TextAlign.right,
+                    decoration: const InputDecoration(
+                      labelText: '脊柱・胸郭・四肢',
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            /*-----------------------------　視力関連　-----*/
             Container(
               decoration: BoxDecoration(
                 border: Border.all(width: 1.0),
@@ -232,7 +257,7 @@ class MemoDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
 
-            /*-聴力関連---------------------------*/
+            /*-----------------------------　聴力関連　-----*/
             Container(
               decoration: BoxDecoration(
                 border: Border.all(width: 1.0),
@@ -324,41 +349,94 @@ class MemoDetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height:10.0),
+            const SizedBox(height: 10.0),
 
-            /* 皮膚疾患  */
-            ListTile(
-              title: TextField(
-                controller: ,
-                enabled: false,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '心臓の病気',
-                  filled: true,
+            /*----------------------------- 皮膚疾患　------*/
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: ListTile(
+                title: TextField(
+                  controller: skinDiseaseController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '皮膚疾患',
+                    filled: true,
+                  ),
                 ),
               ),
             ),
+            const SizedBox(height: 10.0),
 
-            ListTile(
-              title: TextField(
-                controller: urineNoteController,
-                enabled: false,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: '尿検査所見',
-                  filled: true,
+            /*----------------------------- 結核 --------- */
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: ListTile(
+                title: TextField(
+                  controller: urineNoteController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '結核',
+                    filled: true,
+                  ),
                 ),
               ),
             ),
+            const SizedBox(height: 10.0),
 
-            ListTile(
-              title: TextField(
-                controller: othersController,
-                enabled: false,
-                textAlign: TextAlign.right,
-                decoration: const InputDecoration(
-                  labelText: 'その他',
-                  filled: true,
+            /*-----------------------------　心電図関連　---- */
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: TextField(
+                      controller: ecgController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '心電図検査結果',
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  ListTile(
+                    title: TextField(
+                      controller: heartDiseaseController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '心臓の疾患および異常',
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10.0),
+
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0),
+              ),
+              child: ListTile(
+                title: TextField(
+                  controller: othersController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: 'その他',
+                    filled: true,
+                  ),
                 ),
               ),
             ),
