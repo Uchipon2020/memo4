@@ -1,19 +1,18 @@
-
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/screens/list_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  controller: _emailController,
                   decoration: const InputDecoration(labelText: 'メールアドレス'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (String? value) {
@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: const InputDecoration(labelText: 'パスワード'),
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
@@ -71,14 +72,32 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _onLogin() {
-    if (_formKey.currentState?.validate() != true) {
-      return;
+  Future<void> _onLogin() async {
+    try {
+      if (_formKey.currentState?.validate() != true) {
+        return;
+      }
+      final String email = _emailController.text;
+      final String password = _passwordController.text;
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ListScreen(title: '受診履歴'),
+        ),
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('エラー'),
+            content: Text(e.toString()),
+          );
+        },
+      );
+
     }
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) =>  const ListScreen(title: '受診履歴'),
-      ),
-    );
   }
 }
