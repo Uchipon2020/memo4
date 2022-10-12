@@ -24,9 +24,12 @@ class MemoDetailPage extends StatelessWidget {
   TextEditingController tuberculosisDayController = TextEditingController();
   TextEditingController heartDiseaseController = TextEditingController();
   TextEditingController ecgController = TextEditingController();
-  TextEditingController urineNoteController = TextEditingController();
+  TextEditingController urinaryProteinController = TextEditingController();
+  TextEditingController urinarySugarController = TextEditingController();
+  TextEditingController urineController = TextEditingController();
   TextEditingController othersController = TextEditingController();
   TextEditingController other2Controller = TextEditingController();
+  TextEditingController schoolDoctorController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +48,11 @@ class MemoDetailPage extends StatelessWidget {
     tuberculosisDayController.text = _memo.tuberculosisDay.toString();
     heartDiseaseController.text = _memo.heartDisease.toString();
     ecgController.text = _memo.ecg.toString();
-    urineNoteController.text = _memo.urineNote.toString();
+    urinaryProteinController.text = _memo.urinaryProtein.toString();
+    urinarySugarController.text = _memo.urinarySugar.toString();
+    urineController.text = _memo.urine.toString();
     othersController.text = _memo.others.toString();
+    schoolDoctorController.text = _memo.schoolDoctor.toString();
     other2Controller.text = _memo.other2.toString();
 
     _memo.rightEar1000 == true
@@ -76,7 +82,7 @@ class MemoDetailPage extends StatelessWidget {
             /*------------------------------身長体重----------------*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Row(
                 children: [
@@ -120,7 +126,7 @@ class MemoDetailPage extends StatelessWidget {
             //
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Expanded(
                 child: Padding(
@@ -143,7 +149,7 @@ class MemoDetailPage extends StatelessWidget {
             /*----------------------------　 脊柱胸郭四肢 ---*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Expanded(
                 child: Padding(
@@ -166,7 +172,7 @@ class MemoDetailPage extends StatelessWidget {
             /*-----------------------------　視力関連　-----*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Column(
                 children: [
@@ -174,7 +180,7 @@ class MemoDetailPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: rightEyeController,
                             enabled: false,
@@ -223,7 +229,7 @@ class MemoDetailPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: leftEyeController,
                             enabled: false,
@@ -239,8 +245,7 @@ class MemoDetailPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        right: 8.0, left: 0.8, bottom: 10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       controller: eyeDiseaseController,
                       enabled: false,
@@ -260,7 +265,7 @@ class MemoDetailPage extends StatelessWidget {
             /*-----------------------------　聴力関連　-----*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Column(
                 children: [
@@ -268,7 +273,7 @@ class MemoDetailPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: right1000EarController,
                             enabled: false,
@@ -283,7 +288,7 @@ class MemoDetailPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextField(
                             controller: right4000EarController,
                             enabled: false,
@@ -333,8 +338,7 @@ class MemoDetailPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        right: 8.0, left: 0.8, bottom: 10.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       controller: earDiseaseController,
                       enabled: false,
@@ -354,7 +358,7 @@ class MemoDetailPage extends StatelessWidget {
             /*----------------------------- 皮膚疾患　------*/
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: ListTile(
                 title: TextField(
@@ -373,11 +377,11 @@ class MemoDetailPage extends StatelessWidget {
             /*----------------------------- 結核 --------- */
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: ListTile(
                 title: TextField(
-                  controller: urineNoteController,
+                  controller: tuberculosisController,
                   enabled: false,
                   textAlign: TextAlign.right,
                   decoration: const InputDecoration(
@@ -392,7 +396,7 @@ class MemoDetailPage extends StatelessWidget {
             /*-----------------------------　心電図関連　---- */
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: Column(
                 children: [
@@ -424,9 +428,57 @@ class MemoDetailPage extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
 
+            /*-----------------------------　尿検査　---- */
             Container(
               decoration: BoxDecoration(
-                border: Border.all(width: 1.0),
+                border: Border.all(width: 1.0 , color: Colors.grey),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: TextField(
+                      controller: urinaryProteinController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '尿蛋白 結果',
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  ListTile(
+                    title: TextField(
+                      controller: urinarySugarController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: '尿糖　結果',
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10.0),
+                  ListTile(
+                    title: TextField(
+                      controller: urineController,
+                      enabled: false,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        labelText: 'その他の検査',
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10.0),
+
+            /*-----------------------------　その他の疾病及び異常　---- */
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0 , color: Colors.grey),
               ),
               child: ListTile(
                 title: TextField(
@@ -440,6 +492,48 @@ class MemoDetailPage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10.0),
+
+            /*-----------------------------　学校医コメント　---- */
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0 , color: Colors.grey),
+              ),
+              child: ListTile(
+                title: TextField(
+                  maxLines: null,
+                  minLines: 3,
+                  controller: schoolDoctorController,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '学校医　コメント',
+                    filled: true,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+
+            /*-----------------------------　事後措置　---- */
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0 , color: Colors.grey),
+              ),
+              child: ListTile(
+                title: TextField(
+                  controller: other2Controller,
+                  enabled: false,
+                  textAlign: TextAlign.right,
+                  decoration: const InputDecoration(
+                    labelText: '事後処置',
+                    filled: true,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+
           ],
         ),
       ),

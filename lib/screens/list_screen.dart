@@ -65,7 +65,7 @@ class _MyHomePageState extends State<ListScreen> {
                   tuberculosis: data['tuberculosis'],
                   tuberculosisDay: data['tuberculosisDay'],
                   heartDisease: data['heartDisease'],
-                  urineNote: data['urineNote'],
+                  urine: data['urineNote'],
                   others: data['others'],
                   createdTime: data['createdTime'],
                   upDated: data['updatedDate']);

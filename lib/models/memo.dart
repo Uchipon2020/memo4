@@ -16,7 +16,10 @@ class Memos {
   final String? skinDisease; //皮膚の病気
   final String? tuberculosisDisease;//結核の所見
   final String? heartDisease; //心臓の所見の有無
-  final String? urineNote; //尿所見の内容
+  final String? urinaryProtein;//尿蛋白
+  final String? urinarySugar; //尿糖
+  final String? urine; //その他の尿検査
+  final String? schoolDoctor;
   final String? others; //その他
   final String? other2;
 
@@ -27,7 +30,7 @@ class Memos {
   final bool? leftEar4000; //聴力　左4000
   final bool? tuberculosis; //結核の有無
   final bool? ecg;//心電図所見の有無
-  final bool? urine; //尿所見の有無
+
 
   final Timestamp? tuberculosisDay; //結核の日付
   final Timestamp createdTime;
@@ -58,9 +61,11 @@ class Memos {
         this.tuberculosisDay,
         this.heartDisease,
         this.ecg,
+        this.urinaryProtein,
+        this.urinarySugar,
         this.urine,
-        this.urineNote,
         this.others,
+        this.schoolDoctor,
         this.other2});
 }
 //　身長・体重
