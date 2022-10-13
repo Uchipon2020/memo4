@@ -71,9 +71,17 @@ class MemoDetailPage extends StatelessWidget {
         ? ecgController.text = '所見あり'
         : ecgController.text = '異常なし';
 
+    final d = _memo.createdTime.toDate();
+    String year = d.year.toString();
+    String month = d.month.toString();
+    String day = d.day.toString();
+    String title = _memo.title.toString();
+
+    final String mainTitle = '$title  実施$year/$month/$day' ;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(_memo.title),
+        title: Text(mainTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),

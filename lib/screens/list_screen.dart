@@ -66,13 +66,23 @@ class _MyHomePageState extends State<ListScreen> {
                   leftCorrectedEye: data['leftCorrectedEye'],
                   eyeDisease: data['eyeDisease'],
                   earDisease: data['earDisease'],
+                  skinDisease: data['skinDisease'],
+                  tuberculosisDisease: data['tuberculosisDisease'],
                   tuberculosis: data['tuberculosis'],
-                  tuberculosisDay: data['tuberculosisDay'],
                   heartDisease: data['heartDisease'],
+                  urinaryProtein: data['urinaryProtein'],
+                  urinarySugar: data['urinarySugar'],
                   urine: data['urine'],
+                  schoolDoctor: data['schoolDoctor'],
                   others: data['others'],
+                  other2: data['other2'],
                   createdTime: data['createdTime'],
-                  upDated: data['updatedDate']);
+                  upDated: data['updatedDate'],
+                  rightEar1000: data['rightEar1000'],
+                  leftEar1000: data['leftEar1000'],
+                  rightEar4000: data['rightEar4000'],
+                  leftEar4000: data['leftEar4000'],
+                  ecg: data['ecg']);
 
               final d = fetchMemo.createdTime.toDate();
               String year = d.year.toString();
@@ -98,7 +108,7 @@ class _MyHomePageState extends State<ListScreen> {
                                   children: [
                                     ListTile(
                                       onTap: () {
-                                        /* Navigator.pop(context);
+                                        Navigator.pop(context);
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -107,7 +117,7 @@ class _MyHomePageState extends State<ListScreen> {
                                               currentMemo: fetchMemo,
                                             ),
                                           ),
-                                        );*/
+                                        );
                                       },
                                       leading: const Icon(Icons.edit),
                                       title: const Text('修正'),
@@ -167,6 +177,4 @@ class _MyHomePageState extends State<ListScreen> {
       ),
     );
   }
-
-
 }

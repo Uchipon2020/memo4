@@ -24,12 +24,12 @@ class Memos {
   final String? other2;
 
 /* bool -----------------------------------*/
-  final bool? rightEar1000; //聴力　右1000
-  final bool? leftEar1000; //聴力　左1000
-  final bool? rightEar4000; //聴力　右4000
-  final bool? leftEar4000; //聴力　左4000
-  final bool? tuberculosis; //結核の有無
-  final bool? ecg;//心電図所見の有無
+  late final bool rightEar1000; //聴力　右1000
+  late final bool leftEar1000; //聴力　左1000
+  late final bool rightEar4000; //聴力　右4000
+  late final bool leftEar4000; //聴力　左4000
+  late final bool tuberculosis; //結核の有無
+  late final bool ecg;//心電図所見の有無
 
 
   final Timestamp? tuberculosisDay; //結核の日付
@@ -50,17 +50,17 @@ class Memos {
         this.rightCorrectedEye,
         this.leftCorrectedEye,
         this.eyeDisease,
-        this.rightEar1000,
-        this.leftEar1000,
-        this.rightEar4000,
-        this.leftEar4000,
+        this.rightEar1000 = false,
+        this.leftEar1000 = false,
+        this.rightEar4000 = false,
+        this.leftEar4000 = false,
         this.earDisease,
         this.skinDisease,
         this.tuberculosisDisease,
-        this.tuberculosis,
+        this.tuberculosis = false,
         this.tuberculosisDay,
         this.heartDisease,
-        this.ecg,
+        this.ecg = false,
         this.urinaryProtein,
         this.urinarySugar,
         this.urine,
