@@ -34,12 +34,12 @@ class AddEditMemoScreen extends StatelessWidget {
   TextEditingController othersController = TextEditingController();
   TextEditingController other2Controller = TextEditingController();
   TextEditingController schoolDoctorController = TextEditingController();
-  late bool rightEar1000;
-  late bool leftEar1000;
-  late bool rightEar4000;
-  late bool leftEar4000;
-  late bool tuberculosis;
-  late bool ecg;
+  bool rightEar1000 = false;
+  bool leftEar1000 = false;
+  bool rightEar4000 = false;
+  bool leftEar4000 = false;
+  bool tuberculosis = false;
+  bool ecg = false;
 
   Future<void> save() async {
     final memoCollection = FirebaseFirestore.instance.collection('memoTest');
