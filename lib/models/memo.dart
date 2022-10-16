@@ -23,13 +23,13 @@ class Memos {
   final String? others; //その他
   final String? other2;
 
-/* bool -----------------------------------*/
-  final bool? rightEar1000; //聴力　右1000
-  final bool? leftEar1000; //聴力　左1000
-  final bool? rightEar4000; //聴力　右4000
-  final bool? leftEar4000; //聴力　左4000
-  final bool? tuberculosis; //結核の有無
-  final bool? ecg;//心電図所見の有無
+/* bool予定 -----------------------------------*/
+  final String? rightEar1000; //聴力　右1000
+  final String? leftEar1000; //聴力　左1000
+  final String? rightEar4000; //聴力　右4000
+  final String? leftEar4000; //聴力　左4000
+  final String? tuberculosis; //結核の有無
+  final String? ecg;//心電図所見の有無
 
 
   final Timestamp? tuberculosisDay; //結核の日付

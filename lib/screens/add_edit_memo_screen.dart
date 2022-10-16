@@ -34,12 +34,11 @@ class AddEditMemoScreen extends StatelessWidget {
   TextEditingController othersController = TextEditingController();
   TextEditingController other2Controller = TextEditingController();
   TextEditingController schoolDoctorController = TextEditingController();
-  bool rightEar1000 = false;
-  bool leftEar1000 = false;
-  bool rightEar4000 = false;
-  bool leftEar4000 = false;
-  bool tuberculosis = false;
-  bool ecg = false;
+  TextEditingController rightEar1000Controller = TextEditingController();
+  TextEditingController leftEar1000Controller = TextEditingController();
+  TextEditingController rightEar4000Controller = TextEditingController();
+  TextEditingController leftEar4000Controller = TextEditingController();
+
 
   Future<void> save() async {
     final memoCollection = FirebaseFirestore.instance.collection('memoTest');
@@ -66,12 +65,13 @@ class AddEditMemoScreen extends StatelessWidget {
 
       //bool エリア
       'createdTime': Timestamp.now(),
-      'rightEar1000': rightEar1000, //聴力　右1000
-      'leftEar1000': leftEar1000, //聴力　左1000
-      'rightEar4000': rightEar4000, //聴力　右4000
-      'leftEar4000': leftEar4000, //聴力　左4000
-      'tuberculosis': tuberculosis, //結核の有無
-      'ecg': ecg,
+      'updated': Timestamp.now(),
+      'rightEar1000': rightEar1000Controller.text, //聴力　右1000
+      'leftEar1000': leftEar1000Controller.text, //聴力　左1000
+      'rightEar4000': rightEar4000Controller.text, //聴力　右4000
+      'leftEar4000': leftEar4000Controller.text, //聴力　左4000
+      'tuberculosis': tuberculosisController.text, //結核の有無
+      'ecg': ecgController.text,
 
     });
   }
@@ -83,7 +83,7 @@ class AddEditMemoScreen extends StatelessWidget {
       'title': titleController.text,
       'height': heightController.text,
       'weight': weightController.text,
-      'createdTime': Timestamp.now(),
+      'updated': Timestamp.now(),
     });
   }
 
@@ -322,7 +322,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: ecgController,
+                    controller: tuberculosisController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -339,7 +339,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: urineController,
+                    controller: ecgController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -356,7 +356,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: eyeDiseaseController,
+                    controller: urinaryProteinController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -373,7 +373,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: earDiseaseController,
+                    controller: urinarySugarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -390,7 +390,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: other2Controller,
+                    controller: urineController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -407,7 +407,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: ecgController,
+                    controller: schoolDoctorController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -424,7 +424,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: urineController,
+                    controller: other2Controller,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -450,7 +450,7 @@ class AddEditMemoScreen extends StatelessWidget {
                 ),
               ),
 
-//////boolエリア
+//////boolエリア(予定）
 
               const SizedBox(height: 5),
               const Text('右耳1000'),
@@ -460,23 +460,13 @@ class AddEditMemoScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                   ),
-
-                   child: Switch(
-                    value: rightEar1000,
-                    activeColor: Colors.orange,
-                    activeTrackColor: Colors.red,
-                    inactiveThumbColor: Colors.blue,
-                    inactiveTrackColor: Colors.green,
-                    onChanged: _changeSwitch,
-                  ),
-
-                  /*TextField(
-                    controller: ecgController,
+                  child:TextField(
+                    controller: right1000EarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
                     ),
-                  ),*/
+                  ),
                 ),
               ),
               const SizedBox(height: 5),
@@ -488,7 +478,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: urineController,
+                    controller: left1000EarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -505,7 +495,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: eyeDiseaseController,
+                    controller: right4000EarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -522,7 +512,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: earDiseaseController,
+                    controller: left4000EarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -539,7 +529,7 @@ class AddEditMemoScreen extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                   ),
                   child: TextField(
-                    controller: other2Controller,
+                    controller: tuberculosisController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.only(left: 10),
@@ -579,9 +569,4 @@ class AddEditMemoScreen extends StatelessWidget {
     );
 
   }
-
-  void _changeSwitch(bool e) => setState(() => rightEar1000 = e);
-}
-
-setState(bool Function() param0) {
 }
