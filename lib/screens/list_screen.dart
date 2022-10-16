@@ -54,35 +54,36 @@ class _MyHomePageState extends State<ListScreen> {
                   docs[index].data() as Map<String, dynamic>;
 
               final Memos fetchMemo = Memos(
-                  id: docs[index].id,
-                  title: data['title'],
-                  height: data['height'],
-                  weight: data['weight'],
-                  stateOfNutrition: data['stateOfNutrition'],
-                  spinalColumnNote: data['spinalColumnNote'],
-                  rightEye: data['rightEye'],
-                  leftEye: data['leftEye'],
-                  rightCorrectedEye: data['rightCorrectedEye'],
-                  leftCorrectedEye: data['leftCorrectedEye'],
-                  eyeDisease: data['eyeDisease'],
-                  earDisease: data['earDisease'],
-                  skinDisease: data['skinDisease'],
-                  tuberculosisDisease: data['tuberculosisDisease'],
-                  tuberculosis: data['tuberculosis'],
-                  heartDisease: data['heartDisease'],
-                  urinaryProtein: data['urinaryProtein'],
-                  urinarySugar: data['urinarySugar'],
-                  urine: data['urine'],
-                  schoolDoctor: data['schoolDoctor'],
-                  others: data['others'],
-                  other2: data['other2'],
-                  createdTime: data['createdTime'],
-                  upDated: data['updatedDate'],
-                  rightEar1000: data['rightEar1000'],
-                  leftEar1000: data['leftEar1000'],
-                  rightEar4000: data['rightEar4000'],
-                  leftEar4000: data['leftEar4000'],
-                  ecg: data['ecg']);
+                id: docs[index].id,
+                title: data['title'],
+                height: data['height'],
+                weight: data['weight'],
+                stateOfNutrition: data['stateOfNutrition'],
+                spinalColumnNote: data['spinalColumnNote'],
+                rightEye: data['rightEye'],
+                leftEye: data['leftEye'],
+                rightCorrectedEye: data['rightCorrectedEye'],
+                leftCorrectedEye: data['leftCorrectedEye'],
+                eyeDisease: data['eyeDisease'],
+                rightEar1000: data['rightEar1000'],
+                leftEar1000: data['leftEar1000'],
+                rightEar4000: data['rightEar4000'],
+                leftEar4000: data['leftEar4000'],
+                ecg: data['ecg'],
+                earDisease: data['earDisease'],
+                skinDisease: data['skinDisease'],
+                tuberculosisDisease: data['tuberculosisDisease'],
+                tuberculosis: data['tuberculosis'],
+                heartDisease: data['heartDisease'],
+                urinaryProtein: data['urinaryProtein'],
+                urinarySugar: data['urinarySugar'],
+                urine: data['urine'],
+                schoolDoctor: data['schoolDoctor'],
+                others: data['others'],
+                other2: data['other2'],
+                createdTime: data['createdTime'],
+                upDated: data['updatedDate'],
+              );
 
               final d = fetchMemo.createdTime.toDate();
               String year = d.year.toString();
@@ -96,7 +97,7 @@ class _MyHomePageState extends State<ListScreen> {
                   children: [
                     ListTile(
                       title: Text(fetchMemo.title),
-                      subtitle: Text('最終更新日$year年$month月$day日'),
+                      subtitle: Text('検査日$year年$month月$day日'),
                       trailing: IconButton(
                         onPressed: () {
                           showModalBottomSheet(

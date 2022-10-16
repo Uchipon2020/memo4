@@ -41,8 +41,8 @@ class AddEditMemoScreen extends StatelessWidget {
 
 
   Future<void> save() async {
-    final memoCollection = FirebaseFirestore.instance.collection('memoTest');
-    memoCollection.add({
+     final memoCollection =  FirebaseFirestore.instance.collection('memoTest');
+    await memoCollection.add({
       'title': titleController.text, //タイトル
       'height': heightController.text, //身長
       'weight': weightController.text, //体重
