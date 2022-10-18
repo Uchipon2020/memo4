@@ -3,10 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 
-class AddEditMemoScreen extends StatelessWidget {
+class AddEditMemoScreen extends StatefulWidget {
+  Memos? currentMemo;
   AddEditMemoScreen({Key? key, this.currentMemo}) : super(key: key);
 
-  final Memos? currentMemo;
+@override
+  AddEditMemoScreenState createState()  =>  AddEditMemoScreenState();
+}
+
+class AddEditMemoScreenState extends State<AddEditMemoScreen>{
 
   TextEditingController titleController = TextEditingController();
   TextEditingController heightController = TextEditingController();
@@ -51,7 +56,7 @@ class AddEditMemoScreen extends StatelessWidget {
           spinalColumnNoteController.text, //脊柱及び侠客の疾病及び異常の有無並び四肢の状態
       'rightEye': rightEyeController.text, //視力右
       'leftEye': leftEyeController.text, //視力左
-      'rightCorrectedEye': rightCorrectedEyeController.text, //矯正視力右
+      'rightCorrectedEye': rightCorrectedEyeController.text, //矯正視力右https://www.youtube.com/watch?v=rZhttps://www.youtube.com/watch?v=2H9VAQn6RCMEmU06v5yw
       'leftCorrectedEye': leftCorrectedEyeController.text, //矯正視力左
       'eyeDisease': eyeDiseaseController.text, //目の疾病
       'earDisease': earDiseaseController.text, //耳の疾病
@@ -78,7 +83,7 @@ class AddEditMemoScreen extends StatelessWidget {
 
   Future<void> upData() async {
     final doc =
-        FirebaseFirestore.instance.collection('memoTest').doc(currentMemo!.id);
+        FirebaseFirestore.instance.collection('memoTest').doc('id');
     await doc.update({
       'title': titleController.text,
       'height': heightController.text,
@@ -86,20 +91,20 @@ class AddEditMemoScreen extends StatelessWidget {
       'updated': Timestamp.now(),
     });
   }
-
-/* void initState() {
-    if (currentMemo != null) {
-      titleController.text = currentMemo!.title;
-      heightController.text = currentMemo!.height;
-      weightController.text = currentMemo!.weight;
+@override
+void initState() {
+    if ( widget.currentMemo!= null) {
+      titleController.text = widget.currentMemo!.title;
+      heightController.text = widget.currentMemo!.height.toString();
+      weightController.text = widget.currentMemo!.weight.toString();
     }
-  }*/
+  }
   @override
   Widget build(BuildContext context) {
     //initState();
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentMemo == null ? '新規作成' : '編集'),
+        title: Text(widget.currentMemo == null ? '新規作成' : '編集'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -558,9 +563,9 @@ class AddEditMemoScreen extends StatelessWidget {
               ElevatedButton(
                   onPressed: () async {
                     Navigator.pop(context);
-                    currentMemo == null ? await save() : await upData();
+                    widget.currentMemo == null ? await save() : await upData();
                   },
-                  child: Text(currentMemo == null ? '保存' : '編集終了')),
+                  child: Text(widget.currentMemo == null ? '保存' : '編集終了')),
             ],
           ),
         ),
