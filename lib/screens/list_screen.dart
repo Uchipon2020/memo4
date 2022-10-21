@@ -6,8 +6,8 @@ import 'package:memo/screens/add_edit_memo_screen.dart';
 import 'package:memo/screens/login_screen.dart';
 import 'package:memo/screens/memo_detail_screen.dart';
 
+
 class ListScreen extends StatefulWidget {
-  static String id = 'list_screen';
   const ListScreen({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
@@ -15,7 +15,6 @@ class ListScreen extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<ListScreen> {
-  List<Memos> memosList = [];
   final memoCollection = FirebaseFirestore.instance.collection('memoTest');
 
   Future<void> deleteMemo(String id) async {
@@ -41,7 +40,7 @@ class _MyHomePageState extends State<ListScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
-          if (!snapshot.hasData) {
+          if (!snapshot.hasData) {  //dataがnullかどうかの判定をするのがhasData
             return const Center(
               child: Text('データがありません'),
             );
@@ -140,10 +139,7 @@ class _MyHomePageState extends State<ListScreen> {
                         icon: const Icon(Icons.edit),
                       ),
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MemoDetailPage(fetchMemo)),
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MemoDetailPage(fetchMemo)),
                         );
                       },
                     ),
@@ -159,7 +155,7 @@ class _MyHomePageState extends State<ListScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddEditMemoScreen(),
+              builder: (context) => const AddEditMemoScreen(currentMemo: null),
             ),
           );
         },
@@ -170,8 +166,7 @@ class _MyHomePageState extends State<ListScreen> {
   }
 
   Future<void> _onSignOut() async {
-    await FirebaseAuth.instance.signOut();
-
+    FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) => const LoginScreen(),
