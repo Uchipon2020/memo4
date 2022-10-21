@@ -1,19 +1,12 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 
-class AddEditMemoScreen extends StatefulWidget {
+class AddEditMemoScreen extends StatelessWidget {
+  AddEditMemoScreen({Key? key, this.currentMemo}) : super(key: key);
+
   final Memos? currentMemo;
-  const AddEditMemoScreen({Key? key, required this.currentMemo}) : super(key: key);
-
-  @override
-  _AddEditMemoScreenState createState() => _AddEditMemoScreenState();
-}
-
-class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
 
   TextEditingController titleController = TextEditingController();
   TextEditingController heightController = TextEditingController();
@@ -32,7 +25,7 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
   TextEditingController earDiseaseController = TextEditingController();
   TextEditingController skinDiseaseController = TextEditingController();
   TextEditingController tuberculosisController = TextEditingController();
-  //TextEditingController tuberculosisDayController = TextEditingController();
+  TextEditingController tuberculosisDayController = TextEditingController();
   TextEditingController heartDiseaseController = TextEditingController();
   TextEditingController ecgController = TextEditingController();
   TextEditingController urinaryProteinController = TextEditingController();
@@ -41,11 +34,15 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
   TextEditingController othersController = TextEditingController();
   TextEditingController other2Controller = TextEditingController();
   TextEditingController schoolDoctorController = TextEditingController();
+  TextEditingController rightEar1000Controller = TextEditingController();
+  TextEditingController leftEar1000Controller = TextEditingController();
+  TextEditingController rightEar4000Controller = TextEditingController();
+  TextEditingController leftEar4000Controller = TextEditingController();
 
 
   Future<void> save() async {
-    final memoCollection = FirebaseFirestore.instance.collection('memoTest');
-    memoCollection.add({
+     final memoCollection =  FirebaseFirestore.instance.collection('memoTest');
+    await memoCollection.add({
       'title': titleController.text, //タイトル
       'height': heightController.text, //身長
       'weight': weightController.text, //体重
@@ -69,18 +66,19 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
       //bool エリア
       'createdTime': Timestamp.now(),
       'updated': Timestamp.now(),
-      'rightEar1000': right1000EarController.text, //聴力　右1000
-      'leftEar1000': right1000EarController.text, //聴力　左1000
-      'rightEar4000': left1000EarController.text, //聴力　右4000
-      'leftEar4000': left4000EarController.text, //聴力　左4000
+      'rightEar1000': rightEar1000Controller.text, //聴力　右1000
+      'leftEar1000': leftEar1000Controller.text, //聴力　左1000
+      'rightEar4000': rightEar4000Controller.text, //聴力　右4000
+      'leftEar4000': leftEar4000Controller.text, //聴力　左4000
       'tuberculosis': tuberculosisController.text, //結核の有無
       'ecg': ecgController.text,
+
     });
   }
 
   Future<void> upData() async {
     final doc =
-        FirebaseFirestore.instance.collection('memoTest').doc();
+        FirebaseFirestore.instance.collection('memoTest').doc(currentMemo!.id);
     await doc.update({
       'title': titleController.text,
       'height': heightController.text,
@@ -89,20 +87,19 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
     });
   }
 
- @override
-  void initState() {
-    if (widget.currentMemo != null) {
-      titleController.text = widget.currentMemo!.title;
-      heightController.text = widget.currentMemo!.height.toString();
-      weightController.text = widget.currentMemo!.weight.toString();
+/* void initState() {
+    if (currentMemo != null) {
+      titleController.text = currentMemo!.title;
+      heightController.text = currentMemo!.height;
+      weightController.text = currentMemo!.weight;
     }
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     //initState();
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.currentMemo == null ? '新規作成' : '編集'),
+        title: Text(currentMemo == null ? '新規作成' : '編集'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -463,7 +460,7 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                   ),
-                  child: TextField(
+                  child:TextField(
                     controller: right1000EarController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -559,16 +556,17 @@ class _AddEditMemoScreenState extends State<AddEditMemoScreen>{
               ),
 
               ElevatedButton(
-                onPressed: () async {
-                  Navigator.pop(context);
-                  widget.currentMemo == null ? await save() : await upData();
-                },
-                child: Text(widget.currentMemo == null ? '保存' : '編集終了'),
-              ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    currentMemo == null ? await save() : await upData();
+                  },
+                  child: Text(currentMemo == null ? '保存' : '編集終了')),
             ],
           ),
         ),
       ),
+
     );
+
   }
 }
