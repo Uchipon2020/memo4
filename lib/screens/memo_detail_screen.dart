@@ -54,8 +54,12 @@ class MemoDetailPage extends StatelessWidget {
     othersController.text = _memo.others.toString();
     schoolDoctorController.text = _memo.schoolDoctor.toString();
     other2Controller.text = _memo.other2.toString();
+    right1000EarController.text = _memo.rightEar1000.toString();
+    right4000EarController.text = _memo.rightEar4000.toString();
+    left1000EarController.text = _memo.leftEar1000.toString();
+    left4000EarController.text = _memo.leftEar4000.toString();
 
-    _memo.rightEar1000 == true
+/*    _memo.rightEar1000 == true
         ? right1000EarController.text = '所見あり'
         : right1000EarController.text = '異常なし';
     _memo.rightEar4000 == true
@@ -70,10 +74,20 @@ class MemoDetailPage extends StatelessWidget {
     _memo.ecg == true
         ? ecgController.text = '所見あり'
         : ecgController.text = '異常なし';
+        */
+
+
+    final d = _memo.createdTime.toDate();
+    String year = d.year.toString();
+    String month = d.month.toString();
+    String day = d.day.toString();
+    String title = _memo.title.toString();
+
+    final String mainTitle = '$title  実施$year/$month/$day' ;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_memo.title),
+        title: Text(mainTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),

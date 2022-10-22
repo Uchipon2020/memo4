@@ -23,50 +23,50 @@ class Memos {
   final String? others; //その他
   final String? other2;
 
-/* bool -----------------------------------*/
-  final bool? rightEar1000; //聴力　右1000
-  final bool? leftEar1000; //聴力　左1000
-  final bool? rightEar4000; //聴力　右4000
-  final bool? leftEar4000; //聴力　左4000
-  final bool? tuberculosis; //結核の有無
-  final bool? ecg;//心電図所見の有無
+/* bool予定 -----------------------------------*/
+  final String? rightEar1000; //聴力　右1000
+  final String? leftEar1000; //聴力　左1000
+  final String? rightEar4000; //聴力　右4000
+  final String? leftEar4000; //聴力　左4000
+  final String? tuberculosis; //結核の有無
+  final String? ecg;//心電図所見の有無
 
 
   final Timestamp? tuberculosisDay; //結核の日付
   final Timestamp createdTime;
   final Timestamp? upDated;
 
-  Memos(
-      {required this.id,
-        required this.title,
-        required this.createdTime,
-        this.upDated,
-        this.height,
-        this.weight,
-        this.stateOfNutrition,
-        this.spinalColumnNote,
-        this.rightEye,
-        this.leftEye,
-        this.rightCorrectedEye,
-        this.leftCorrectedEye,
-        this.eyeDisease,
-        this.rightEar1000,
-        this.leftEar1000,
-        this.rightEar4000,
-        this.leftEar4000,
-        this.earDisease,
-        this.skinDisease,
-        this.tuberculosisDisease,
-        this.tuberculosis,
-        this.tuberculosisDay,
-        this.heartDisease,
-        this.ecg,
-        this.urinaryProtein,
-        this.urinarySugar,
-        this.urine,
-        this.others,
-        this.schoolDoctor,
-        this.other2});
+  Memos({
+      required this.id,
+      required this.title,
+      this.height,
+      this.weight,
+      this.stateOfNutrition,
+      this.spinalColumnNote,
+      this.rightEye,
+      this.leftEye,
+      this.rightCorrectedEye,
+      this.leftCorrectedEye,
+      this.eyeDisease,
+      this.earDisease,
+      this.skinDisease,
+      this.tuberculosisDisease,
+      this.heartDisease,
+      this.urinaryProtein,
+      this.urinarySugar,
+      this.urine,
+      this.schoolDoctor,
+      this.others,
+      this.other2,
+      this.rightEar1000,
+      this.leftEar1000,
+      this.rightEar4000,
+      this.leftEar4000,
+      this.tuberculosis,
+      this.ecg,
+      this.tuberculosisDay,
+      required this.createdTime,
+      this.upDated});
 }
 //　身長・体重
 // ２，栄養状態
