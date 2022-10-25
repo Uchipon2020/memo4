@@ -3,10 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memo/models/memo.dart';
 
-class AddEditMemoScreen extends StatelessWidget {
-  AddEditMemoScreen({Key? key, this.currentMemo}) : super(key: key);
-
+class AddEditMemoScreen extends StatefulWidget {
+  const AddEditMemoScreen({Key? key, this.currentMemo}) : super(key: key);
   final Memos? currentMemo;
+  @override
+  AddEditMemoScreenState createState() => AddEditMemoScreenState();
+}
+class AddEditMemoScreenState extends State<AddEditMemoScreen>{
 
   TextEditingController titleController = TextEditingController();
   TextEditingController heightController = TextEditingController();
@@ -62,8 +65,6 @@ class AddEditMemoScreen extends StatelessWidget {
       'urinarySugar': urinarySugarController.text, //尿糖
       'urine': urineController, //その他の尿検査
       'schoolDoctor': schoolDoctorController.text, //校医所見
-
-      //bool エリア
       'createdTime': Timestamp.now(),
       'updated': Timestamp.now(),
       'rightEar1000': rightEar1000Controller.text, //聴力　右1000
@@ -78,28 +79,50 @@ class AddEditMemoScreen extends StatelessWidget {
 
   Future<void> upData() async {
     final doc =
-        FirebaseFirestore.instance.collection('memoTest').doc(currentMemo!.id);
+        FirebaseFirestore.instance.collection('memoTest').doc(widget.currentMemo!.id);
     await doc.update({
-      'title': titleController.text,
-      'height': heightController.text,
-      'weight': weightController.text,
+      'title': titleController.text, //タイトル
+      'height': heightController.text, //身長
+      'weight': weightController.text, //体重
+      'stateOfNutrition': stateOfNutritionController.text, //栄養状態
+      'spinalColumnNote':
+      spinalColumnNoteController.text, //脊柱及び侠客の疾病及び異常の有無並び四肢の状態
+      'rightEye': rightEyeController.text, //視力右
+      'leftEye': leftEyeController.text, //視力左
+      'rightCorrectedEye': rightCorrectedEyeController.text, //矯正視力右
+      'leftCorrectedEye': leftCorrectedEyeController.text, //矯正視力左
+      'eyeDisease': eyeDiseaseController.text, //目の疾病
+      'earDisease': earDiseaseController.text, //耳の疾病
+      'skinDisease': skinDiseaseController.text, //皮膚の病気
+      'tuberculosisDisease': tuberculosisController.text, //結核の所見
+      'heartDisease': heartDiseaseController.text, //心臓の所見の有無
+      'urinaryProtein': urinaryProteinController.text, //尿蛋白
+      'urinarySugar': urinarySugarController.text, //尿糖
+      'urine': urineController, //その他の尿検査
+      'schoolDoctor': schoolDoctorController.text, //校医所見
       'updated': Timestamp.now(),
+      'rightEar1000': rightEar1000Controller.text, //聴力　右1000
+      'leftEar1000': leftEar1000Controller.text, //聴力　左1000
+      'rightEar4000': rightEar4000Controller.text, //聴力　右4000
+      'leftEar4000': leftEar4000Controller.text, //聴力　左4000
+      'tuberculosis': tuberculosisController.text, //結核の有無
+      'ecg': ecgController.text,
     });
   }
 
-/* void initState() {
-    if (currentMemo != null) {
-      titleController.text = currentMemo!.title;
-      heightController.text = currentMemo!.height;
-      weightController.text = currentMemo!.weight;
+void initState() {
+    if (widget.currentMemo != null) {
+      titleController.text = widget.currentMemo!.title;
+      heightController.text = widget.currentMemo!.height.toString();
+      weightController.text = widget.currentMemo!.weight.toString();
     }
-  }*/
+  }
   @override
   Widget build(BuildContext context) {
     //initState();
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentMemo == null ? '新規作成' : '編集'),
+        title: Text(widget.currentMemo == null ? '新規作成' : '編集'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -558,9 +581,9 @@ class AddEditMemoScreen extends StatelessWidget {
               ElevatedButton(
                   onPressed: () async {
                     Navigator.pop(context);
-                    currentMemo == null ? await save() : await upData();
+                    widget.currentMemo == null ? await save() : await upData();
                   },
-                  child: Text(currentMemo == null ? '保存' : '編集終了')),
+                  child: Text(widget.currentMemo == null ? '保存' : '編集終了')),
             ],
           ),
         ),

@@ -155,7 +155,7 @@ class _MyHomePageState extends State<ListScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AddEditMemoScreen(currentMemo: null),
+              builder: (context) =>  AddEditMemoScreen(currentMemo: null),
             ),
           );
         },
