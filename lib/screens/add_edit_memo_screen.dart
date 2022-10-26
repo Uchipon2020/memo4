@@ -115,6 +115,27 @@ void initState() {
       titleController.text = widget.currentMemo!.title;
       heightController.text = widget.currentMemo!.height.toString();
       weightController.text = widget.currentMemo!.weight.toString();
+  stateOfNutritionController.text = widget.currentMemo!.stateOfNutrition.toString(); //栄養状態
+  spinalColumnNoteController.text = widget.currentMemo!.spinalColumnNote.toString(); //脊柱及び侠客の疾病及び異常の有無並び四肢の状態
+  rightEyeController.text = widget.currentMemo!.rightEye.toString(); //視力右
+  leftEyeController.text = widget.currentMemo!.leftEye.toString(); //視力左
+  rightCorrectedEyeController.text = widget.currentMemo!.rightCorrectedEye.toString(); //矯正視力右
+  leftCorrectedEyeController.text = widget.currentMemo!.leftCorrectedEye.toString(); //矯正視力左
+  eyeDiseaseController.text = widget.currentMemo!.eyeDisease.toString();; //目の疾病
+  earDiseaseController.text = widget.currentMemo!.earDisease.toString(); //耳の疾病
+  skinDiseaseController.text = widget.currentMemo!.skinDisease.toString(); //皮膚の病気
+  tuberculosisController.text = widget.currentMemo!.tuberculosisDisease.toString(); //結核の所見
+  heartDiseaseController.text = widget.currentMemo!.heartDisease.toString(); //心臓の所見の有無
+  urinaryProteinController.text = widget.currentMemo!.urinaryProtein.toString(); //尿蛋白
+  urinarySugarController.text = widget.currentMemo!.urinarySugar.toString(); //尿糖
+  urineController.text = widget.currentMemo!.urine.toString(); //その他の尿検査
+  schoolDoctorController.text = widget.currentMemo!.schoolDoctor.toString(); //校医所見
+  rightEar1000Controller.text = widget.currentMemo!.rightEar1000.toString(); //聴力　右1000
+  leftEar1000Controller.text = widget.currentMemo!.leftEar1000.toString(); //聴力　左1000
+  rightEar4000Controller.text = widget.currentMemo!.rightEar4000.toString(); //聴力　右4000
+  leftEar4000Controller.text = widget.currentMemo!.leftEar4000.toString(); //聴力　左4000
+  tuberculosisController.text = widget.currentMemo!.tuberculosis.toString(); //結核の有無
+  ecgController.text = widget.currentMemo!.ecg.toString();
     }
   }
   @override
